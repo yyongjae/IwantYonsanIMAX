@@ -31,13 +31,13 @@ class IwantIMAX:
         self.browser.get(url)
         
         day_list = self.browser.find_element_by_xpath('//*[@id="ticket"]/div[2]/div[1]/div[3]/div[2]').text
-        print(day_list[-1])
+        print(day_list)
         flag = True
         try:
             while flag:
                 now = datetime.now()
                 
-                if date != day_list[-1]:
+                if date in day_list:
                     try:
                         begin = 0
                         while True:
@@ -64,13 +64,13 @@ class IwantIMAX:
         
 if __name__ == "__main__":
     
-    driver = '/Users/yongcho/dev/chromedriver_mac_arm64/chromedriver'
-    agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-    token = '-'
-    chat_id = 0
+    driver = None
+    agent = None
+    token = None
+    chat_id = None
     url_old = 'http://www.cgv.co.kr/reserve/show-times/?areacode=01&theaterCode=0013&date=20230103'
     url_new = 'http://ticket.cgv.co.kr/Reservation/Reservation.aspx?MOVIE_CD=20031534&MOVIE_CD_GROUP=20030160&PLAY_YMD=20230102&THEATER_CD=0013&PLAY_NUM=&PLAY_START_TM=1900&AREA_CD=13&SCREEN_CD=01&THIRD_ITEM=&SCREEN_RATING_CD='
-    date = '3'
+    date = '수\n11'
     
     yongmax = IwantIMAX(driver, agent, token, chat_id)
     yongmax.checkNewDate(url_new, date)
